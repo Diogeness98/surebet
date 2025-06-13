@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Calculadora de Surebet (3 Odds)</title>
+  <title>Calculadora Surebet (2 Odds)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
       width: 100%;
       padding: 12px;
       font-size: 18px;
-      background-color: #28a745;
+      background-color: #007bff;
       color: white;
       border: none;
       border-radius: 6px;
@@ -44,7 +44,7 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #218838;
+      background-color: #0056b3;
     }
     .resultado {
       margin-top: 25px;
@@ -56,16 +56,13 @@
   </style>
 </head>
 <body>
-  <h2>Calculadora de Surebet (3 Odds)</h2>
+  <h2>Calculadora Surebet (2 Odds)</h2>
 
   <label for="odd1">Odd 1:</label>
-  <input type="number" id="odd1" step="0.01" min="1" placeholder="Ex: 2.5" />
+  <input type="number" id="odd1" step="0.01" min="1" placeholder="Ex: 1.8" />
 
   <label for="odd2">Odd 2:</label>
-  <input type="number" id="odd2" step="0.01" min="1" placeholder="Ex: 3.1" />
-
-  <label for="odd3">Odd 3:</label>
-  <input type="number" id="odd3" step="0.01" min="1" placeholder="Ex: 4.0" />
+  <input type="number" id="odd2" step="0.01" min="1" placeholder="Ex: 2.1" />
 
   <label for="total">Total a Apostar (R$):</label>
   <input type="number" id="total" step="0.01" min="0.01" placeholder="Ex: 100" />
@@ -78,15 +75,14 @@
     function calcularSurebet() {
       const odd1 = parseFloat(document.getElementById('odd1').value);
       const odd2 = parseFloat(document.getElementById('odd2').value);
-      const odd3 = parseFloat(document.getElementById('odd3').value);
       const total = parseFloat(document.getElementById('total').value);
 
-      if (!odd1 || !odd2 || !odd3 || !total) {
-        alert('Por favor, preencha todos os campos corretamente.');
+      if (!odd1 || !odd2 || !total) {
+        alert('Preencha todos os campos corretamente.');
         return;
       }
 
-      const soma = (1 / odd1) + (1 / odd2) + (1 / odd3);
+      const soma = (1 / odd1) + (1 / odd2);
       const resultadoDiv = document.getElementById('resultado');
 
       if (soma >= 1) {
@@ -94,15 +90,13 @@
       } else {
         const valor1 = total / (odd1 * soma);
         const valor2 = total / (odd2 * soma);
-        const valor3 = total / (odd3 * soma);
         const lucro = (odd1 * valor1) - total;
 
         resultadoDiv.textContent =
-          `É uma Surebet!\n\n` +
-          `Aposte:\n` +
-          `R$ ${valor1.toFixed(2)} na Odd 1\n` +
-          `R$ ${valor2.toFixed(2)} na Odd 2\n` +
-          `R$ ${valor3.toFixed(2)} na Odd 3\n\n` +
+          `É uma Surebet!\\n\\n` +
+          `Aposte:\\n` +
+          `R$ ${valor1.toFixed(2)} na Odd 1\\n` +
+          `R$ ${valor2.toFixed(2)} na Odd 2\\n\\n` +
           `Lucro Garantido: R$ ${lucro.toFixed(2)}`;
       }
     }
